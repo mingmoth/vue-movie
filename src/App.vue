@@ -1,19 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Navbar 
+      @checkFav="setVisibility"/>
+    <main>
+      <router-view 
+        :visibility="visibility"/>
+    </main>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+import Navbar from "./components/Navbar.vue";
+
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    Navbar,
+  },
+  data() {
+    return {
+      visibility: "all",
+    };
+  },
+  methods: {
+    setVisibility(visibility) {
+      return this.visibility = visibility;
+    }
+  },
+};
 </script>
 
 <style>
@@ -23,6 +42,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  width: 100%;
 }
 </style>
